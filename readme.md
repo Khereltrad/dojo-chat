@@ -6,7 +6,11 @@
 ├─ project-name/            dojo-chat
 
 | ├─ client/
-| |     ├─ public/          
+| |     ├─ css/
+| |     ├─ docs/
+| |     ├─ fonts/
+| |     ├─ image/
+| |     ├─ index.html           
 
 | ├─ node_modules/          Autogenerado
 
@@ -17,10 +21,9 @@
 | |     ├─ views/                               *vistas
 | |     ├─ server.js        server.js
 
-| ├─ views/                 index.ejs   
-
+| ├─ .gitignore
 | ├─ package-lock.json
-| ├─ package.json           "ejs","express","socket.io"
+| ├─ package.json           
 | ├─ readme.md
 
 
@@ -48,6 +51,4 @@ En Plataforma           Si
 
 --------------------------------------------------------------------------------
 
-git remote add origin https://github.com/Khereltrad/dojo-chat.git
-git branch -M main
-git push -u origin main
+var flash = require('connect-flash');

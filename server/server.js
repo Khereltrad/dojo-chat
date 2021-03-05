@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const port = 8000;
-var flash = require('connect-flash');
 
 app
 .use( express.json() )
