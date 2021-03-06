@@ -11,13 +11,14 @@
     </head>
     <body>
         <style>
-            .col-2,.col-3,.col-7{width:max-content;background: linear-gradient(0deg,#12179b,#f2ebf4); height:600px;};
+            .col-3,.col-2,.col-7{width:max-content;background: linear-gradient(0deg,#12179b,beige); height:600px;};
+            .msg-header-img{border-radius: 50%;width: 40px;margin-left: 5%;margin-top: 12px;};        
         </style>
       <div class="container-fluid">
         <div class="container-md"></div> <!-- para hacerlo nav o mensjaes -->
         <div class="container-fluid"> <!-- main container-->
            <div class="row">
-                <div class="col-3">
+                <div class="col-3" style="background-color: limegreen;">
                     <div class="div">
                         <ul class="mt-5">
                             <li class="list-group></li>
@@ -32,8 +33,8 @@
                     </div>
                 </div>   <!-- columna izquierda-->
                 <div class="col-7"> <!-- Cuerpo del chat-->
-                  <div class="container border border-success" style="height: 475px;"></div> <!-- zona de mensajes hechos-->                 
-                    <div class="container rounded-pill mt-3" style="background-color:#93bdb8;height:100px;"> <!-- zona de generar nuevos mensjaes -->     
+                  <div class="container border border-success" style="height: 475px;background-color: beige;"></div> <!-- zona de mensajes hechos-->                 
+                    <div class="container rounded-pill mt-3" style="background-color:#8fd1e5;height:100px;"> <!-- zona de generar nuevos mensjaes -->     
                         <div class="row">
                             <div class="col-10">
                                 <textarea name="" id="" cols="30" rows="10" class="mt-1 ml-4 rounded" style="height:90px;width: 550px;"></textarea>
@@ -45,8 +46,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-2">
-                    <button type="button" id="deslogeo" class="btn btn-outline-danger mt-5">Log Out</button>
+                <div class="col-2 p-0" style="background-color: limegreen;">
+                    <div id="colder" class="container" style="background-color: beige;padding: 12px;margin: 7px;max-width: -webkit-fill-available;height: 500px;" >
+                    <div class="msg-header" style="height: -webkit-fill-available;" >
+                        <div class="msg-header-img" style="background-color: aqua;height: 200px;">
+                            <img src="IMG_20210122_123214 (2).jpg" alt="" srcset="" style="height: 200px;width: -webkit-fill-available;object-fit:cover;">
+                            <div class="div mt-2" id="who" style="background-color:beige;font-family: emoji;font-size: 30px;text-align: -webkit-center;">El idiota </div>
+                        </div>
+                    </div>
+                        <button type="button" id="deslogeo" class="btn btn-outline-danger mt-5">Log Out</button>
+                    </div>
                 </div>    <!-- columna derecha-->
            </div>
         </div>          
@@ -57,3 +66,5 @@
       </script>
     </body>
 </html>
+
+                  
