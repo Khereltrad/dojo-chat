@@ -13,7 +13,8 @@ const router = Router();
 // }
 
 router
-.get('/',  async (req, res) => { res.render('loging.ejs'); });
+.get('/',  async (req, res) => { res.render('loging.ejs'); })
+.get('/register',  async (req, res) => { res.render('register.ejs'); });
 // .post('/', async (req, res) => {
 //     try {
 //         await Keeper.create(req.body);
