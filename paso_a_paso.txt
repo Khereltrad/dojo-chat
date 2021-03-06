@@ -1,0 +1,24 @@
+Se ha creado        carpetas y subdiviciones
+Se ha creado        readme.md  <-  mapa de carpetas y ficha del proyecto
+Se ha creado        server.js
+Se ha instalado     los paquetes npm
+Se ha creado        .gitignore
+Se ha incluido      archivos de estilos en carpeta client
+Se ha creado en     Workbench base de datos chat-dojo
+Se ha creado        primer commit al lograr que arranca y escucha el servidor
+Se ha creado        se ha agregado objetivos.md y paso_a_paso.txt
+Se ha creado
+Se ha creado
+Se ha creado
+Se ha creado
+Se ha creado
+Se ha creado
+
+///
+
+Siguientes pasos    :
+
+-   Crear   EJS para loging
+-   Crear   Vinculos en routes
+-   Crear   Validaciones Usuario
+-   Crear   Modelo de toma de datos de Usuario

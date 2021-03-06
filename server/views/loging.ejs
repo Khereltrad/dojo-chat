@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <!-- <link rel="stylesheet/less" type="text/css" href="styles.less" /> -->
+        <link rel="icon"  type="image/ico" href="img/favicon.ico">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>    
+        <!-- <script src="//cdn.jsdelivr.net/npm/less@3.13" ></script> -->
+        <!-- <link rel="stylesheet" href="/colores-en-vivo/client/public/estilos.less"> -->
+        <title> Loging °°° </title>
+    </head>
+    <body class="bg-light">
+        <style>
+           /* body{background-color: #E9C4D6;} */
+           .txwhite{color: aliceblue;}
+        </style>
+        <div class="container-xl p-0 m-5 mr-0" style="text-align:-webkit-center;"> 
+            <div class="P-0" style="height:500px;">
+            <tbody>
+                <div class="container">
+                    <div class="row p-3" style="justify-content:center;">
+                    <div class="form-row rounded-lg p-5 m-5" style="background-color: #E00606;">
+                        <form id="form-login" action="/login" method="POST" class="col s6" >
+                            <div class="form-group">
+                            <div class="div mb-3 txwhite">
+                                <h4>Bienvenido al Chat!</h4>
+                            </div>
+                            <label for="exampleInputEmail1" style="color: azure;">Email </label>
+                            <input type="email" class="form-control validate" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                            <small id="emailHelp" class="form-text text-light">Recuerda que puedes ingresar con tu correo.</small>
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1" style="color: azure;">Contraseña</label>
+                            <input type="password" class="form-control validate" name="password" id="exampleInputPassword1"required/>
+                            </div>
+                            <div class="row">
+                            <button type="submit" class="btn-sm btn-info btn-block m-3">Ingresar</button>
+                            <a class="btn-sm btn-block" href="http://localhost:8000/register"><button type="button" class="btn btn-success"> Registrarse </button></a>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </tbody>
+            </>
+    
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type ="text/javascript">
+
+            $(document).ready(function () {
+            
+                function hablar(mensaje) {
+                let msg = new SpeechSynthesisUtterance();
+                msg.text = mensaje;
+                window.speechSynthesis.speak(msg)
+            }
+
+                var socket = io("http://localhost:8000");
+
+                $(".btncolor").on("click", function (ev) {
+                    let color = $(this).attr("id");
+                    console.log(color);
+                    socket.emit("cambiar_color", { color: color })
+                    hablar(color)
+                
+                    socket.emit('cambiar_color',color);  
+                });
+
+                $('#varcolor').on("change", function (){
+                    let varcolor = $(this).val();
+                    socket.emit("cambiar_color", { color: varcolor })
+                });
+                  
+                socket.on("color", function (data) {
+                    $("body").css("background", data.color)              
+                });
+            });
+        </script>
+    </body>
+</html>

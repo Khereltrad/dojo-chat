@@ -2,7 +2,6 @@
 ///////////////////////////////      M A P A      ////////////////////////////////////
 
 
-
 ├─ project-name/            dojo-chat
 
 | ├─ client/
@@ -15,33 +14,38 @@
 | ├─ node_modules/          Autogenerado
 
 | ├─ server/
-| |     ├─ data/                                *para la base de datos
+| |     ├─ data/
+| |     | ├─ model/                             *base de datos 
+| |     | ├─ contenidodata.txt                            
 | |     ├─ js/              main.js             *para funciones
-| |     ├─ routes/          routes.js           *rutas
-| |     ├─ views/                               *vistas
+| |     ├─ routes/          routes.js
+| |     ├─ views/           templates/  loging.ejs  register.ejs
 | |     ├─ server.js        server.js
 
 | ├─ .gitignore
+| ├─ objetivos.md
 | ├─ package-lock.json
-| ├─ package.json           
+| ├─ package.json
+| ├─ paso_a_paso.txt           
 | ├─ readme.md
 
 
-/////////////////////////        F I C H A        /////////////////////////////////////
+///////////////////////////////        F I C H A        /////////////////////////////////////
 
 
 Colores en Tiempo real
 
 ID                      26  
-Proyecto                
+Proyecto                dojo-chat
                         
-Objetivos Pendientes    Lista:
+Objetivos Pendientes    6/7 ,detalles ver objetivos.md
                         
 Estado                  Funcionalidad   completa
                         Comunicación con MYSQL No necesaria
                         Estilos completos
 
-Bonus                   Hacer un boton que
+Bonus                   1)  Los mensajes deben quedar guardados en la base de datos.
+                        2)  Debe guardar la fecha-hora de cada mensaje.
 
 Para Avanzar/Terminar   avanzar en bonus
 Repositorio             SI
