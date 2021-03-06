@@ -1,20 +1,12 @@
 const { Router } = require('express');
 const router = Router();
-
+// const {checkloging} = require('../js/middlewares/middles');
 // const { Keeper } = require('../db');
-
-
-// function checkLogin(req, res, next) {
-//     if (req.session.user == null) {
-//     res.redirect('/login');
-//     }
-//     res.locals.user = req.session.user;
-//     next();
-// }
 
 router
 .get('/',  async (req, res) => { res.render('loging.ejs'); })
-.get('/register',  async (req, res) => { res.render('register.ejs'); });
+.get('/register',  async (req, res) => { res.render('register.ejs'); })
+.get('/chat',  async (req, res) => { res.render('salaunica.ejs'); });
 // .post('/', async (req, res) => {
 //     try {
 //         await Keeper.create(req.body);
