@@ -8,6 +8,7 @@
 | |     ├─ css/
 | |     ├─ docs/
 | |     ├─ fonts/
+| |     ├─ functions/      functions.js
 | |     ├─ image/
 | |     ├─ index.html           
 
@@ -17,9 +18,9 @@
 | |     ├─ data/
 | |     | ├─ model/                             *base de datos 
 | |     | ├─ contenidodata.txt                            
-| |     ├─ js/              main.js             *para funciones
-| |     ├─ routes/          routes.js
-| |     ├─ views/           templates/  loging.ejs  register.ejs
+| |     ├─ js/              middlewares/     main.js             *para funciones
+| |     ├─ routes/          auth.js          routes.js
+| |     ├─ views/           templates/       loging.ejs        register.ejs      salaunica.ejs
 | |     ├─ server.js        server.js
 
 | ├─ .gitignore
