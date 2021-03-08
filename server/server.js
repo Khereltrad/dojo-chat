@@ -13,7 +13,7 @@ app
 .use(require('./routes/routes'))
 .use(require('./routes/auth'))
 
-.use(express.static(__dirname+"/public"))
+.use(express.static(__dirname+"/client"))
 
 .get("/",(req,res) =>    {res.json({message: "Hola ^^"});    });
 
