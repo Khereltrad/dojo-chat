@@ -2,10 +2,12 @@ const { Router } = require('express');
 const { TbUsuario } = require('../data/models/userdb');
 const session = require("express-session");
 const bcrypt = require('bcrypt');
+const flash =  require('connect-flash');
 const router = Router();
 // const {checkloging} = require('../js/middlewares/middles');
 
 router
+
 .post('/datosregistro', async (req, res) => { 
 
    // crear el nuevo usuario en la base de datos
@@ -33,27 +35,30 @@ router
    res.redirect('/chat');
 });
 
-// // 3. Ruta para que los usuarios que ya existen, entren a la plataforma (formulario de login)
-// router.post('/login', async (req, res) => {
-//    // Primero intentamos recuperar el usuario por su email
-//    const user = await User.findOne({where: {email: req.body.email}});
-//    if (user == null) {
-//      // en caso de que ese email no exista
-//      req.flash('errors', 'Usuario inexistente o contraseña incorrecta');
-//      return res.redirect('/login');
-//    }
-//    // Después comparamos contraseñas
-//    var isCorrect = await bcrypt.compare(req.body.password, user.password);
-//    if (isCorrect == false) {
-//      // en caso de que ese email no exista
-//      req.flash('errors', 'Usuario inexistente o contraseña incorrecta');
-//      return res.redirect('/login');
-//    }
- 
-//    // Finalmente redirigimos al home
-//    req.session.user = user;
-//    res.redirect('/')
-//  });
+router.post('/datosloging', async (req, res) => {
+
+   console.log(req.body);
+
+   const errors   =  req.flash("errors");
+   const mensajes =  req.flash("mensaje");
+
+   const user = await TbUsuario.findOne({where: {email: req.body.email}});
+   if (user == null) {
+      console.log('Intento de loging con datos errados -EM');
+      req.flash('errors', 'Usuario inexistente o contraseña incorrecta');
+      return res.redirect('/');      
+   }
+
+   let isCorrect = await bcrypt.compare(req.body.password, user.password);
+   if (isCorrect == false) {
+      console.log('Intento de loging con datos errados -PW');
+      req.flash('errors', 'Usuario inexistente o contraseña incorrecta');
+      return res.redirect('/');
+   }
+   req.session.user = user;
+   console.log(`Logeo exitoso del `+user.rol+` `+user.name);
+   res.redirect('/chat');
+ });
  
  // 4. Ruta para cerrar sesión
  router
