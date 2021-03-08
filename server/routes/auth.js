@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const { TbUsuario } = require('../data/models/userdb');
+const session = require("express-session");
 const bcrypt = require('bcrypt');
 const router = Router();
 // const {checkloging} = require('../js/middlewares/middles');
@@ -8,7 +9,7 @@ router
 .post('/datosregistro', async (req, res) => { 
 
    // crear el nuevo usuario en la base de datos
-   try {
+   // try {
       const password_encrypted = await bcrypt.hash(req.body.password, 10);
       
       const usuario = await TbUsuario.findAndCountAll();
@@ -22,16 +23,13 @@ router
          email: req.body.email,
          password: password_encrypted
       });
-      console.log('Nuevo usuario: ', user);
-      // guardar el usuario en sesion
-      req.session.user = user;
-   } 
-   catch(err) {  // En el caso de algún error, guardamos los errores en "errors", y redirigimos al formulario
-      console.log(err);
-      // for (var key in err.errors) { req.flash('errors', err.errors[key].message);}
-      return res.redirect('/');
-   }
-   // redirigir a la pantalla principal
+   // } 
+   // catch(err) {  // En el caso de algún error, guardamos los errores en "errors", y redirigimos al formulario
+   //    console.log(err);
+   //    // for (var key in err.errors) { req.flash('errors', err.errors[key].message);}
+   //    return res.redirect('/');
+   // }
+   req.session.user = user;
    res.redirect('/chat');
 });
 

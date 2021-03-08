@@ -1,4 +1,6 @@
 const express = require("express");
+const session = require("express-session");
+const flash =  require('connect-flash');
 const app = express();
 const path = require('path');
 const port = 8000;
@@ -6,6 +8,9 @@ const port = 8000;
 app
 .use( express.json() )
 .use( express.urlencoded({ extended: true }) )
+
+.use(session({secret:'M11.n1.5am'}))
+.use(flash())
 
 .set('views',path.join(__dirname + '/views'))
 .set('view engine', 'ejs')
