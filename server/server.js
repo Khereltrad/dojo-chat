@@ -11,6 +11,7 @@ app
 .set('view engine', 'ejs')
 
 .use(require('./routes/routes'))
+.use(require('./routes/auth'))
 
 .use(express.static(__dirname+"/public"))
 
