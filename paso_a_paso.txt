@@ -1,24 +1,31 @@
-Se ha creado        carpetas y subdiviciones
-Se ha creado        readme.md  <-  mapa de carpetas y ficha del proyecto
-Se ha creado        server.js
-Se ha instalado     los paquetes npm
-Se ha creado        .gitignore
-Se ha incluido      archivos de estilos en carpeta client
-Se ha creado en     Workbench base de datos chat-dojo
-Se ha creado        primer commit al lograr que arranca y escucha el servidor
-Se ha creado        se ha agregado objetivos.md y paso_a_paso.txt
+Se ha creado         carpetas y subdiviciones
+Se ha creado         readme.md  <-  mapa de carpetas y ficha del proyecto
+Se ha creado         server.js
+Se ha instalado      los paquetes npm
+Se ha creado         .gitignore
+Se ha incluido       archivos de estilos en carpeta client
+Se ha creado en      Workbench base de datos chat-dojo
+Se ha creado         primer commit al lograr que arranca y escucha el servidor
+Se ha creado         se ha agregado objetivos.md y paso_a_paso.txt
+Se ha creado         EJS para loging y Regristro
+Se ha mejorado       Diseño de loging
+Se ha creado         comunicacion entre loging y Regristro
+Se ha creado         Vinculos en routes para loging y Regristro
+Se ha creado         EJS Salaunica
+Se ha creado         Vinculacion en routes para Salaunica
+Se ha creado         row de usuario y row de otros
+Se ha creado         Scrollbar en area de chat
+Se ha creado         commit 
+Se ha checkeado      Validacion de correo/loging  (front)              
 Se ha creado
 Se ha creado
 Se ha creado
 Se ha creado
-Se ha creado
-Se ha creado
-
 ///
 
 Siguientes pasos    :
 
--   Crear   EJS para loging
--   Crear   Vinculos en routes
+-   Crear   
+-   Crear   
 -   Crear   Validaciones Usuario
 -   Crear   Modelo de toma de datos de Usuario
