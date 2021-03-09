@@ -1,3 +1,4 @@
+const { HasMany } = require('sequelize');
 const Sequelize = require('sequelize');
 const sql = new Sequelize('chat-dojo', 'root',null, { host: 'localhost', dialect: 'mysql'});
 
@@ -12,5 +13,14 @@ const TbUsuario = sql.define('Usuarios',{
    password:   {type: Sequelize.STRING,allowNull:false,validate:{notNull:{msg:'Debe ingresar una Contraseña'},len:{args:[6],msg:'El largo de la contraseña  debe ser de al menos 6 digitos'}}}         
 });
 
-sql.sync().then(() =>{console.log('Tabla TbUsuario sincronizada');});
-module.exports = { TbUsuario,};
+const TbMensaje = sql.define('Mensaje',{
+   id:         {type: Sequelize.INTEGER ,primaryKey: true,autoIncrement:true},
+   mensaje:    {type: Sequelize.STRING,allowNull:false,validate:{notNull:{msg:'Falta ingresar su mensaje'},len:{args:[1]}}},
+   tiempo:     {type: Sequelize.STRING,allowNull:false,validate:{notNull:{msg:'Falta ingresar su mensaje'},len:{args:[1]}}},
+});
+
+TbUsuario.hasMany(TbMensaje)
+TbMensaje.belongsTo(TbUsuario)
+
+sql.sync().then(() =>{console.log('Tabla TbUsuario t TbMensaje sincronizada');});
+module.exports = { TbUsuario,TbMensaje};
