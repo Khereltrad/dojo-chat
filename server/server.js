@@ -25,3 +25,10 @@ app
 
 const server = app.listen( port, () => console.log(`Server listening on port: ${port}`) );
 const io = require('socket.io')(server);
+
+
+// io.on("connection", function (socket) {
+//    socket.on("mensuser", function (data) {
+//      io.emit("repuser", { color: "green" });
+//    });
+//  });

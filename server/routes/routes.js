@@ -8,5 +8,8 @@ router
 .get('/register',  async (req, res) => { res.render('register.ejs'); })
 .get('/chat',  async (req, res) => { res.render('salaunica.ejs'); })
 
-.get('/chat2',  async (req, res) => { res.render('sala-dos.ejs'); });
+.get('/chat2',  async (req, res) => { 
+   const user = req.session.user;
+   res.render('sala-dos.ejs', {user});
+});
 module.exports = router;
