@@ -24,7 +24,7 @@ Crea una aplicación simple donde
 4.-     Su tablero de chat debe actualizarse en tiempo real e incluso mostrar todos los chats que
         ocurrieron antes de que el usuario se uniera a la sala.
 
-5.-     La sala de Chat debe estar protegida por Auth, por lo que considere un sistema de Registro/Login.
+<!-- 5.-     La sala de Chat debe estar protegida por Auth, por lo que considere un sistema de Registro/Login. -->
 
 6.-     Cuando un usuario ingrese a la sala de Chat, se le debe avisar a los otros usuarios que
         ese usuario ingresó (por ejemplo: "Pedro Perez ha ingresado a la sala de Chat").

@@ -57,11 +57,11 @@ router.post('/datosloging', async (req, res) => {
    }
    req.session.user = user;
    console.log(`Logeo exitoso del `+user.rol+` `+user.name);
-   res.redirect('/chat');
+   res.redirect('/chat2');
  });
  
  // 4. Ruta para cerrar sesión
  router
- .get('/logout', async (req, res) => { req.session.user = null; res.redirect('/login'); });
+ .get('/logout', async (req, res) => { req.session.user = null; res.redirect('/'); });
 
 module.exports = router;

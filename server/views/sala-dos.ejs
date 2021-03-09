@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('templates/head1') %>
+        <title>Registro</title>
+    </head>
+    <body  style="position: relative;background-color: rgb(59, 59, 58);">
+        <style>
+            .col-3,.col-2,.col-7{width:max-content;background: linear-gradient(0deg,#0a0a0a,rgb(59, 59, 58)); height:600px;};
+            .msg-header-img{border-radius: 50%;width: 40px;margin-left: 5%;margin-top: 12px;};
+            #navul {overflow: auto };    
+        </style>
+        <div class="container-fluid">
+            <div class="container-md"></div> <!-- para hacerlo nav o mensjaes -->
+            <div class="container-fluid"> <!-- main container-->
+                <div class="row">
+                    <div class="col-2">
+                        <div class="div">
+                            <ul class="mt-5">
+                                <li class="list-group></li>
+                                <li class="list-group></li>
+                                <li class="list-group></li>
+                                <li class="list-group></li>
+                                <li class="list-group></li>
+                                <li class="list-group></li>
+                                <li class="list-group></li>
+                                <li class="list-group></li>
+                            </ul>
+                        </div>
+                    </div> <!-- columna izquierda-->
+                    <div class="col-8"> <!-- Cuerpo del chat-->
+                        <div class="container px-0" style="height: 475px;background-color: beige; width:revert;">
+                            <div class="list-group container" data-spy="scroll" style="max-height: 470px;">   <!-- termina en /45 , mensajes -->                            
+                                    <ul class="px-3" id="navul" style="max-height:470px;contain: content;overflow-y: scroll;overflow-x: hidden;">
+                                        <br>
+
+                                        <div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>
+                                        <div class="row px-2 justify-content-end"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo a la derecha</p><sub class="text-right my-2" style="float: right; position: static;font-size: x-small;"> 16:20 </sub></a></div>                                    
+                                        <div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>
+                                        <div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>
+                                        <div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>
+                                        <div class="row px-2 justify-content-end"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo a la derecha</p><sub class="text-right my-2" style="float: right; position: static;font-size: x-small;"> 16:20 </sub></a></div>                                    
+                                                                            
+                                    </ul>                                
+                            </div>
+                        </div> <!-- zona de mensajes hechos-->
+                        <div class="row my-1 px-4" style="background-color: beige;font-size:small;"> Zona de notificaciones </div>
+                        <div class="container rounded px-1 mt-1" style="background-color:#0e4b5e;height:100px;"> <!-- zona de generar nuevos mensjaes -->
+                            <div class="row py-0 px-1 mx-0">
+                                <div class="col-10">
+                                    <textarea name="" id="" cols="30" rows="10" class="mt-1 ml-1 rounded p-2" style="height:90px;width: 650px;"></textarea>
+                                </div>
+                                <div class="col-">
+                                    <button type="submit" class="btn btn-success m-4 ml-4 align-self-center p-2">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 p-0">
+                        <div id="colder" class="container" style="background-color: beige;padding: 12px;margin: 7px;max-width: -webkit-fill-available;height: 500px;">
+                            <div class="msg-header" style="height:-webkit-fill-available;">
+                                <div class="msg-header-img" style="background-color: rgb(37, 83, 83);height: 200px;">
+                                    <img src="IMG_20210122_123214 (2).jpg" alt="" srcset="" style="height:200px;width:-webkit-fill-available;object-fit:cover;">
+                                    <div class="div mt-2" id="who" style="background-color:beige;font-family:emoji;font-size: 30px;text-align:-webkit-center;">Nickname</div>
+                                </div>
+                            </div>
+                            <a href="/logout"><button type="button" id="deslogeo" class="btn btn-outline-danger mt-5">Log Out</button></a>
+                        </div>
+                    </div> <!-- columna derecha-->
+                </div>
+            </div>
+            <div class=""></div>
+        </div>
+        <script>
+          
+          $('body').scrollspy({ target: '#navul' });
+
+      </script>
+    </body>
+</html>

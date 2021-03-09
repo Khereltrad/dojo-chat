@@ -17,6 +17,12 @@ Se ha creado         row de usuario y row de otros
 Se ha creado         Scrollbar en area de chat
 Se ha creado         commit 
 Se ha checkeado      Validacion de correo/loging  (front)              
+Se ha creado         Archivo base de dato de usuarios
+Se ha instalado      Paquetes npm faltantes         
+Se ha creado         Modelo de toma de datos de Usuario         
+Se ha creado         Usuarios en Workbench
+Se ha creado         Validaciones Usuario en loging de tanto correo y pw perfectamente funcionando
+Se ha creado
 Se ha creado
 Se ha creado
 Se ha creado
@@ -27,5 +33,4 @@ Siguientes pasos    :
 
 -   Crear   
 -   Crear   
--   Crear   Validaciones Usuario
--   Crear   Modelo de toma de datos de Usuario
+-   Crear   
