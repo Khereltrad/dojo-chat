@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { TbUsuario } = require('../data/models/userdb');
+const { TbUsuario, TbMensaje } = require('../data/models/userdb');
 const session = require("express-session");
 const bcrypt = require('bcrypt');
 const flash =  require('connect-flash');
@@ -37,8 +37,6 @@ router
 
 router.post('/datosloging', async (req, res) => {
 
-   console.log(req.body);
-
    const errors   =  req.flash("errors");
    const mensajes =  req.flash("mensaje");
 
@@ -60,6 +58,19 @@ router.post('/datosloging', async (req, res) => {
    res.redirect('/chat2');
  });
  
+router.post('/mensuser', async (req,res) =>{
+
+   // const errors   =  req.flash("errors");
+   // const mensajes =  req.flash("mensaje");
+   
+   // const new_mensaje = await TbMensaje.create({
+   //    message: req.body.message
+   // });
+
+   // console.log(new_mensaje);
+   res.redirect('/chat2');
+});
+
  // 4. Ruta para cerrar sesión
  router
  .get('/logout', async (req, res) => { req.session.user = null; res.redirect('/'); });

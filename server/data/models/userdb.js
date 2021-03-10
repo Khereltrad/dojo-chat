@@ -1,4 +1,4 @@
-const { HasMany } = require('sequelize');
+const { hasMany,belongsTo } = require('sequelize');
 const Sequelize = require('sequelize');
 const sql = new Sequelize('chat-dojo', 'root',null, { host: 'localhost', dialect: 'mysql'});
 
@@ -11,13 +11,12 @@ const TbUsuario = sql.define('Usuarios',{
    rol:        {type: Sequelize.STRING,allowNull:false,defaultValue:"Normal"},
    email:      {type: Sequelize.STRING,allowNull:false,unique:true,validate:{notNull:{msg:'Debe ingresar un Email'},len:{args:[6],msg:'El largo del correo debe ser de al menos 6 digitos'},isEmail:{msg:'Favor revise si el correo este bien escrito'}}},
    password:   {type: Sequelize.STRING,allowNull:false,validate:{notNull:{msg:'Debe ingresar una Contraseña'},len:{args:[6],msg:'El largo de la contraseña  debe ser de al menos 6 digitos'}}}         
-});
+},{ timestramps: true });
 
 const TbMensaje = sql.define('Mensaje',{
    id:         {type: Sequelize.INTEGER ,primaryKey: true,autoIncrement:true},
-   mensaje:    {type: Sequelize.STRING,allowNull:false,validate:{notNull:{msg:'Falta ingresar su mensaje'},len:{args:[1]}}},
-   tiempo:     {type: Sequelize.STRING,allowNull:false,validate:{notNull:{msg:'Falta ingresar su mensaje'},len:{args:[1]}}},
-});
+   message:    {type: Sequelize.STRING,allowNull:false,validate:{notNull:{msg:'Falta ingresar su mensaje'},len:{args:[1]}}},
+},{ timestramps: true });
 
 TbUsuario.hasMany(TbMensaje)
 TbMensaje.belongsTo(TbUsuario)

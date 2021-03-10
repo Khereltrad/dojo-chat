@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <%- include('templates/head1') %>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <title>Registro</title>
     </head>
     <body  style="position: relative;background-color: rgb(59, 59, 58);">
@@ -43,12 +44,16 @@
                         <div class="row my-1 px-4" style="background-color: beige;font-size:small;"> Zona de notificaciones </div>
                         <div class="container rounded px-1 mt-1" style="background-color:#0e4b5e;height:100px;"> <!-- zona de generar nuevos mensjaes -->
                             <div class="row py-0 px-1 mx-0">
-                                <div class="col-10">
-                                    <textarea name="" id="" cols="30" rows="10" class="mt-1 ml-1 rounded p-2" style="height:90px;width: 650px;"></textarea>
-                                </div>
-                                <div class="col-">
-                                    <button type="submit" class="btn btn-success m-4 ml-4 align-self-center p-2">Enviar</button>
-                                </div>
+                                <form action="/mensuser" method="POST">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <textarea name="" id="newmsg" name="message" cols="30" rows="10" class="mt-1 ml-1 rounded p-2" style="height:90px;width: 650px;"required ></textarea>
+                                        </div>
+                                        <div class="col-">
+                                            <button type="submit" id="subbtn" class="btn btn-success m-4 ml-4 align-self-center p-2">Enviar</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -67,9 +72,22 @@
             </div>
             <div class=""></div>
         </div>
+        <script src="/socket.io/socket.io.js"></script>
         <script>
           
-          $('body').scrollspy({ target: '#navul' });
+          $(document).ready(function () {
+
+                var socket = io(`http://localhost:8000`);
+
+                $("#subbtn").on("click", function (ev) {
+                    let mensaje = $('#newmsg').val();
+                    // Let nick = req.user.nickname;
+                    console.log(mensaje);
+            //         const data = 
+                    socket.emmit('mensuser',{data:{mensaje,nick}});
+            //    });
+                });
+          });
 
       </script>
     </body>
