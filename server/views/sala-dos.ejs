@@ -33,11 +33,10 @@
                         <div class="container px-0" style="height: 475px;background-color: beige; width:revert;">
                             <div class="list-group container" data-spy="scroll" style="max-height: 470px;">   <!-- termina en /45 , mensajes -->                            
                                     <ul class="px-3" id="navul" style="max-height:470px;contain: content;overflow-y: scroll;overflow-x: hidden;">
-                                        <br>
+                                        <br id="chat">
 
                                         <div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>
-                                        <div class="row px-2 justify-content-end"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo a la derecha</p><sub class="text-right my-2" style="float: right; position: static;font-size: x-small;"> 16:20 </sub></a></div>                                    
-                                                                           
+                                    
                                     </ul>                                
                             </div>
                         </div> <!-- zona de mensajes hechos-->
@@ -79,8 +78,14 @@
 
                 var socket = io(`http://localhost:8000`);
 
-                $("#subbtn").on("click", function (ev) {
+                $("#subbtn").on("click", function () {
                     let mensaje = $('#newmsg').val();
+                    if(mensaje == ''){
+                        alert('No se puede enviar mensajes vacios');
+                        return;
+                    }
+
+                    $('#chat').append(`<div class="row px-2 justify-content-end"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);"><sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup><p class="p-0 m-0" style="font-size: small;">${mensaje}</p><sub class="text-right my-2" style="float: right; position: static;font-size: x-small;"> 16:20 </sub></a></div>`);
                     // Let nick = req.user.nickname;
                     console.log(mensaje);
             //         const data = 
