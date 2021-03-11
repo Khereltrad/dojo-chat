@@ -4,14 +4,14 @@ const session = require("express-session");
 const bcrypt = require('bcrypt');
 const flash =  require('connect-flash');
 const router = Router();
-// const {checkloging} = require('../js/middlewares/middles');
+const {checkLogin,checkAdmin} = require('../js/middlewares/middles');
 
 router
 
 .post('/datosregistro', async (req, res) => { 
 
    // crear el nuevo usuario en la base de datos
-   // try {
+   try {
       const password_encrypted = await bcrypt.hash(req.body.password, 10);
       
       const usuario = await TbUsuario.findAndCountAll();
@@ -25,12 +25,12 @@ router
          email: req.body.email,
          password: password_encrypted
       });
-   // } 
-   // catch(err) {  // En el caso de algún error, guardamos los errores en "errors", y redirigimos al formulario
-   //    console.log(err);
-   //    // for (var key in err.errors) { req.flash('errors', err.errors[key].message);}
-   //    return res.redirect('/');
-   // }
+   } 
+   catch(err) {  // En el caso de algún error, guardamos los errores en "errors", y redirigimos al formulario
+      console.log(err);
+      // for (var key in err.errors) { req.flash('errors', err.errors[key].message);}
+      return res.redirect('/');
+   }
    req.session.user = user;
    res.redirect('/chat');
 });
@@ -58,14 +58,15 @@ router.post('/datosloging', async (req, res) => {
    res.redirect('/chat2');
  });
  
-router.post('/mensuser', async (req,res) =>{
+router.post('/datamsg', async (req,res) =>{
 
    // const errors   =  req.flash("errors");
    // const mensajes =  req.flash("mensaje");
-   
-   // const new_mensaje = await TbMensaje.create({
-   //    message: req.body.message
-   // });
+   console.log(req.body);
+   const new_mensaje = await TbMensaje.create({
+      message: req.body.message,
+      UsuarioId: req.session.user.id
+   });
 
    // console.log(new_mensaje);
    res.redirect('/chat2');

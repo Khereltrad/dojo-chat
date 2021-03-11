@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <%- include('templates/head1') %>
-        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        
         <title>Registro</title>
     </head>
     <body  style="position: relative;background-color: rgb(59, 59, 58);">
@@ -43,10 +43,10 @@
                         <div class="row my-1 px-4" style="background-color: beige;font-size:small;"> Zona de notificaciones </div>
                         <div class="container rounded px-1 mt-1" style="background-color:#0e4b5e;height:100px;"> <!-- zona de generar nuevos mensjaes -->
                             <div class="row py-0 px-1 mx-0">
-                                <form action="/mensuser" method="POST">
+                                <form action="/datamsg" method="POST">
                                     <div class="row">
                                         <div class="col-10">
-                                            <textarea name="" id="newmsg" name="message" cols="30" rows="10" class="mt-1 ml-1 rounded p-2" style="height:90px;width: 650px;"required ></textarea>
+                                            <textarea id="newmsg" name="message" cols="30" rows="10" class="mt-1 ml-1 rounded p-2" style="height:90px;width: 650px;"required ></textarea>
                                         </div>
                                         <div class="col-">
                                             <button type="submit" id="subbtn" class="btn btn-success m-4 ml-4 align-self-center p-2">Enviar</button>
@@ -71,29 +71,35 @@
             </div>
             <div class=""></div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <script src="/socket.io/socket.io.js"></script>
+        <script type ="text/javascript"></script>
         <script>
-          
           $(document).ready(function () {
 
                 var socket = io(`http://localhost:8000`);
 
                 $("#subbtn").on("click", function () {
                     let mensaje = $('#newmsg').val();
-                    if(mensaje == ''){
-                        alert('No se puede enviar mensajes vacios');
-                        return;
-                    }
+                    
+                    if(mensaje == ''){ alert('No se puede enviar mensajes vacios'); return;}
 
-                    $('#chat').append(`<div class="row px-2 justify-content-end"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);"><sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup><p class="p-0 m-0" style="font-size: small;">${mensaje}</p><sub class="text-right my-2" style="float: right; position: static;font-size: x-small;"> 16:20 </sub></a></div>`);
-                    // Let nick = req.user.nickname;
+                    $('#chat').html(`
+                        <div class="row px-2 justify-content-end">
+                        <a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);">
+                        <sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup>
+                        <p class="p-0 m-0" style="font-size: small;">${mensaje}</p>
+                        <sub class="text-right my-2" style="float: right; position: static;font-size: x-small;"> 16:20 </sub>
+                        </a></div>`);
                     console.log(mensaje);
-            //         const data = 
-                    socket.emmit('mensuser',{data:{mensaje,nick}});
-            //    });
+                     
+                    socket.emit('mensuser',mensaje);    
+                });
+
+                socket.on("newmsg", function (data) {
+                    console.log('Llegamos de vuelta');              
                 });
           });
-
-      </script>
+        </script>
     </body>
 </html>
