@@ -84,7 +84,7 @@
                     
                     if(mensaje == ''){ alert('No se puede enviar mensajes vacios'); return;}
 
-                    $('#chat').html(`
+                    $('#chat').append(`
                         <div class="row px-2 justify-content-end">
                         <a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);">
                         <sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup>
