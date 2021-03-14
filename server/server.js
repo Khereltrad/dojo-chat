@@ -3,17 +3,17 @@ const session = require("express-session");
 const flash =  require('connect-flash');
 const app = express();
 const path = require('path');
+const { Socket } = require("socket.io");
 const port = 8000;
 
 app
 .use( express.json() )
 .use( express.urlencoded({ extended: true }) )
 
-.use(session({secret:'M11.n1.5am'}))
-.use(flash())
-
 .set('views',path.join(__dirname + '/views'))
 .set('view engine', 'ejs')
+.use(session({secret:'M11.n1.5am'}))
+.use(flash())
 
 .use(require('./routes/routes'))
 .use(require('./routes/auth'))
@@ -21,9 +21,4 @@ app
 .use(express.static(__dirname+"/client"))
 
 const server = app.listen( port, () => console.log(`Server listening on port: ${port}`) );
-const io = require('socket.io')(server);
-
-io.on("connection", function (socket) {
-   socket.on("mensuser", function (data) {
-      io.emit('newmsg',{data}); });
- });
+require('./routes/sockets');

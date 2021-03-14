@@ -7,7 +7,6 @@ const router = Router();
 const {checkLogin,checkAdmin} = require('../js/middlewares/middles');
 
 router
-
 .post('/datosregistro', async (req, res) => { 
 
    // crear el nuevo usuario en la base de datos
@@ -33,9 +32,8 @@ router
    }
    req.session.user = user;
    res.redirect('/chat');
-});
-
-router.post('/datosloging', async (req, res) => {
+})
+.post('/datosloging', async (req, res) => {
 
    const errors   =  req.flash("errors");
    const mensajes =  req.flash("mensaje");
@@ -56,24 +54,25 @@ router.post('/datosloging', async (req, res) => {
    req.session.user = user;
    console.log(`Logeo exitoso del `+user.rol+` `+user.name);
    res.redirect('/chat2');
- });
- 
-router.post('/datamsg', async (req,res) =>{
+ })
+.post('/datamsg', async (req,res) =>{
 
-   // const errors   =  req.flash("errors");
-   // const mensajes =  req.flash("mensaje");
-   console.log(req.body);
-   const new_mensaje = await TbMensaje.create({
-      message: req.body.message,
-      UsuarioId: req.session.user.id
-   });
+   try {
+      const errors   =  req.flash("errors");
+      const mensajes =  req.flash("mensaje");
 
-   // console.log(new_mensaje);
+      const new_mensaje = await TbMensaje.create({
+         message     : req.body.message,
+         UsuarioId   : req.session.user.id,
+      });
+   } catch(err) {
+      console.log(err);
+      // for (var key in err.errors) { req.flash('errors', err.errors[key].message);}
+      return res.redirect('/');
+   }   
    res.redirect('/chat2');
-});
+})
 
- // 4. Ruta para cerrar sesión
- router
- .get('/logout', async (req, res) => { req.session.user = null; res.redirect('/'); });
+.get('/logout', async (req, res) => { req.session.user = null; res.redirect('/'); });
 
 module.exports = router;

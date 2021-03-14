@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <%- include('templates/head1') %>
-        
-        <title>Registro</title>
+        <%- include('templates/head1') %>        
+        <title>Sala dos del chat</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     </head>
     <body  style="position: relative;background-color: rgb(59, 59, 58);">
         <style>
             .col-3,.col-2,.col-7{width:max-content;background: linear-gradient(0deg,#0a0a0a,rgb(59, 59, 58)); height:600px;};
             .msg-header-img{border-radius: 50%;width: 40px;margin-left: 5%;margin-top: 12px;};
-            #navul {overflow: auto };    
+            /* #navul {overflow: auto };     */
         </style>
         <div class="container-fluid">
             <div class="container-md"></div> <!-- para hacerlo nav o mensjaes -->
@@ -49,7 +49,7 @@
                                             <textarea id="newmsg" name="message" cols="30" rows="10" class="mt-1 ml-1 rounded p-2" style="height:90px;width: 650px;"required ></textarea>
                                         </div>
                                         <div class="col-">
-                                            <button type="submit" id="subbtn" class="btn btn-success m-4 ml-4 align-self-center p-2">Enviar</button>
+                                            <button type="button" id="subbtn" class="btn btn-success m-4 ml-4 align-self-center p-2">Enviar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -57,49 +57,63 @@
                         </div>
                     </div>
                     <div class="col-2 p-0">
-                        <div id="colder" class="container" style="background-color: beige;padding: 12px;margin: 7px;max-width: -webkit-fill-available;height: 500px;">
+                        <div id="colder" class="container" style="padding: 12px;margin: 7px;max-width: -webkit-fill-available;height: 500px;">
                             <div class="msg-header" style="height:-webkit-fill-available;">
-                                <div class="msg-header-img" style="background-color: rgb(37, 83, 83);height: 200px;">
-                                    <img src="IMG_20210122_123214 (2).jpg" alt="" srcset="" style="height:200px;width:-webkit-fill-available;object-fit:cover;">
-                                    <div class="div mt-2" id="who" style="background-color:beige;font-family:emoji;font-size: 30px;text-align:-webkit-center;"><%= user.nickname %> </div>
+                                <div class="msg-header-img bg-dark" style="height: 200px;">
+                                    <!-- <img src="IMG_20210122_123214 (2).jpg" alt="" srcset="" style="height:200px;width:-webkit-fill-available;object-fit:cover;"> -->
+                                    <div class="div mt-2 text-light" id="who" style="font-family:emoji;font-size: 30px;text-align:-webkit-center;"><%= user.nickname %> </div>
                                 </div>
                             </div>
-                            <a href="/logout"><button type="button" id="deslogeo" class="btn btn-outline-danger mt-5">Log Out</button></a>
+                            <a href="/logout"><button type="submit" id="deslogeo" class="btn btn-outline-danger mt-5">Log Out</button></a>
                         </div>
                     </div> <!-- columna derecha-->
                 </div>
             </div>
             <div class=""></div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script type ="text/javascript"></script>
+        
+        <!-- <script type ="text/javascript" src="/node_modules/socket.io/client-dist/socket.io.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous"></script>
         <script>
-          $(document).ready(function () {
+            $(document).ready(function () {
 
-                var socket = io(`http://localhost:8000`);
+                const socket = io("http://localhost:8000");
 
                 $("#subbtn").on("click", function () {
-                    let mensaje = $('#newmsg').val();
                     
+                    const mensaje = $('#newmsg').val();
+                    const owner = req.session.user.id;
+                    const hora  = moment().format('hh:mm');
+
                     if(mensaje == ''){ alert('No se puede enviar mensajes vacios'); return;}
-
-                    $('#chat').append(`
+                    
+                    $('#navul').append.html(`
                         <div class="row px-2 justify-content-end">
-                        <a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);">
-                        <sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup>
-                        <p class="p-0 m-0" style="font-size: small;">${mensaje}</p>
-                        <sub class="text-right my-2" style="float: right; position: static;font-size: x-small;"> 16:20 </sub>
-                        </a></div>`);
-                    console.log(mensaje);
-                     
-                    socket.emit('mensuser',mensaje);    
-                });
+                            <a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);">
+                                <sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup>
+                                <p class="p-0 m-0" style="font-size: small;">${mensaje}</p>
+                                <sub class="text-right my-2" style="float: right; position: static;font-size: x-small;">${hora}</sub></a>
+                        </div>
+                    `);
 
-                socket.on("newmsg", function (data) {
-                    console.log('Llegamos de vuelta');              
+                    const data = {
+                        message : mensaje,
+                        time    : hora,
+                        who     : '<%=user.nickname%>',
+                        UserId  : '<%=user.id%>',
+                    };
+
+                    socket.emit('mensuser', data);
+                    $('#newmsg').val('');
+                    // $.post('/datamsg',data);
                 });
-          });
+            
+                socket.on("messagin", function (data) {
+                    console.log(data);
+                    if(!data.owner == user.id) { $('#navul').append(<div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>);};
+                });
+            }
+
         </script>
     </body>
 </html>
