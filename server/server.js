@@ -3,7 +3,7 @@ const session = require("express-session");
 const flash =  require('connect-flash');
 const app = express();
 const path = require('path');
-const { Socket } = require("socket.io");
+const { socket } = require("socket.io");
 const port = 8000;
 
 app
@@ -18,7 +18,7 @@ app
 .use(require('./routes/routes'))
 .use(require('./routes/auth'))
 
-.use(express.static(__dirname+"/client"))
+.use(express.static(__dirname+"/client"));
 
 const server = app.listen( port, () => console.log(`Server listening on port: ${port}`) );
-require('./routes/sockets');
+require('./routes/sockets')(server);

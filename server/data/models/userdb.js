@@ -1,6 +1,6 @@
 const { hasMany,belongsTo } = require('sequelize');
 const Sequelize = require('sequelize');
-const sql = new Sequelize('chat-dojo', 'root',null, { host: 'localhost', dialect: 'mysql'});
+const sql = new Sequelize('chat-dojo', 'root','Mirune.1812#265464', { host: 'localhost', dialect: 'mysql'});
 
 const TbUsuario = sql.define('Usuarios',{
    // nickname,name,lastname,rol,email, password
