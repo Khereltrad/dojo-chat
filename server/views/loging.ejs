@@ -38,24 +38,9 @@
                     </div>
                 </div>
             </tbody>
-            </>
-    
+            </div>    
         </div>
-        <script src="/socket.io/socket.io.js"></script>
-        <script type ="text/javascript">
-
-            $(document).ready(function () {
-            
-                function hablar(mensaje) {
-                    let msg = new SpeechSynthesisUtterance();
-                    msg.text = mensaje;
-                    window.speechSynthesis.speak(msg)
-                }
-
-                var socket = io("http://localhost:8000");
-
-                
-            });
-        </script>
+        <!-- <script src="/socket.io/socket.io.js"></script> -->
+        <script type ="text/javascript"></script>
     </body>
 </html>

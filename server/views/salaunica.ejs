@@ -7,48 +7,33 @@
 
 <body style="position: relative;">
     
-  
+<script>
 
-
-    <script>
-        $(document).ready(function () {
-
-const socket = io("http://localhost:8000");
-
-$("#subbtn").on("click", function () {
-
-    const mensaje = $('#newmsg').val();
-    const owner = req.session.user.id;
-    const hora = moment().format('hh:mm');
-
-    if (mensaje == '') { alert('No se puede enviar mensajes vacios'); return; };
-
-    $('#navul').append.html(`
-        <div class="row px-2 justify-content-end">
-            <a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);">
-                <sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup>
-                <p class="p-0 m-0" style="font-size: small;">${mensaje}</p>
-                <sub class="text-right my-2" style="float: right; position: static;font-size: x-small;">${hora}</sub></a>
-        </div>
-`);
-
-    const data = { message: mensaje,time: hora,who: '<%=user.nickname%>',UserId: '<%=user.id%>',};
-
-    socket.emit('mensuser', data);
-    $('#newmsg').val('');
-    $.post('/datamsg',data);
-});
+// scrip para recibir mensajes del chat
 
 socket.on("messagin", function (data) {
+    console.log(data);
     if (!data.owner == user.id) { 
-        $('#navul').append('<div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1" style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>');
+        $('#navul').append('<div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1"  style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>');
     };
-
 });
 
-});
 
-    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</script>  
+
+
 </body>
 
 </html lang>

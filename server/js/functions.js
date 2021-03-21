@@ -24,3 +24,9 @@ function showError(sec,msg){
    $(`sec`).focus();
    $('alert').alert('dispose');
 };
+
+function hablar(mensaje) {
+   let msg = new SpeechSynthesisUtterance();
+   msg.text = mensaje;
+   window.speechSynthesis.speak(msg)
+};
