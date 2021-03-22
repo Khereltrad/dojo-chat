@@ -9,14 +9,9 @@
     
 <script>
 
-// scrip para recibir mensajes del chat
 
-socket.on("messagin", function (data) {
-    console.log(data);
-    if (!data.owner == user.id) { 
-        $('#navul').append('<div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1"  style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>');
-    };
-});
+// lo que he visto es que el jquery simplemente no responde pese a tener el cdn y no anuncia ningun error para encontrar la falla
+
 
 
 

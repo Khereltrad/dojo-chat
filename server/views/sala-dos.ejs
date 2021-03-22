@@ -3,10 +3,37 @@
 
     <head>
     <%- include('templates/head1') %>
+    <script>
+        
+        $(document).ready(function () {
+
+            var socket = io("http://localhost:8000");
+            moment.locale("es");
+            
+            $("#txtbtn").on('click', function (ev) {
+                const new_mensaje = $('#newmsg').val();    
+                const owner = req.session.user.id;
+                const hora = moment().format('hh:mm');
+                if (new_mensaje == '') { alert('No se puede enviar mensajes vacios'); return; }
+                $('#chat').append(`<div class="row px-2 justify-content-end"> <a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);"> <sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup> <p class="p-0 m-0" style="font-size: small;">${new_mensaje}</p> <sub class="text-right my-2" style="float: right; position: static;font-size: x-small;">${hora}</sub></a> </div> `);
+                const data = { message: mensaje,time: hora,who: '<%=user.nickname%>',UserId: '<%=user.id%>',};
+                socket.emit('mensuser', data);
+                $('#newmsg').val('');
+                $.post('/datamsg',data);
+            });   
+        
+            socket.on("messagin", function (data) {
+                if (!data.owner == user.id) { 
+                    $('#chat').append('<div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1"  style="font-size: 10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>');
+                };
+            });
+        });           
+
+    </script>
         <title>Sala dos del chat</title>
     </head> 
     <body style="position: relative;background-color: rgb(59, 59, 58);">
-    <style>
+        <style>
         .col-3,.col-2,.col-7 {
             
             background: linear-gradient(0deg, #0a0a0a, rgb(59, 59, 58));
@@ -19,13 +46,13 @@
             margin-top: 12px;
         };
         #navul {overflow: auto };    
-    </style>
-    <div class="container-fluid">
-        <div class="container-md"></div>
+        </style>
         <div class="container-fluid">
-            <div class="row" style="place-content: center;">
-                <div class="col-2">
-                    <div class="div">
+            <!-- <div class="container-md"></div> -->
+            <div class="container-fluid">
+                <div class="row" style="place-content: center;">
+                    <div class="col-2">
+                        <div class="div">
                         <ul class="mt-5">
                             <li class="list-group></li>
                                     <li class=" list-group></li>
@@ -36,19 +63,19 @@
                             <li class="list-group></li>
                                     <li class=" list-group></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-8">
-                    <div class="container px-0" style="height: 475px;background-color: beige; width:revert;">
-                        <div class="list-group container" data-spy="scroll" style="max-height:470px;">
-                            <ul class="px-3" id="navul" style="max-height:470px;contain:content;overflow-y: scroll;overflow-x:hidden;">
-                                <br id="chat">
-                                <div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width:fit-content;"><sup class="p-0 m-1" style="font-size:10px;"> loco </sup><p class="p-0 m-0" style="font-size: small;"> mensjae de ejemplo default </p><sub class="text-right my-2" style="float:right;position:static;font-size: x-small;"> Moment </sub></a></div>
-                            </ul>
                         </div>
                     </div>
-                    <div class="row my-1 px-4" style="background-color: beige;font-size:small;"> Zona de notificaciones</div>
-                    <div class="container rounded px-1 mt-1" style="background-color:#0e4b5e;height:100px;">
+                    <div class="col-8">
+                        <div class="container px-0" style="height: 475px;background-color: beige; width:revert;">
+                            <div class="list-group container" data-spy="scroll" style="max-height:470px;">
+                                <ul class="px-3" id="navul" style="max-height:470px;contain:content;overflow-y: scroll;overflow-x:hidden;">
+                                    <br id="chat">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row my-1 px-4" style="background-color: beige;font-size:small;"> Zona de notificaciones</div>
+                        <div class="container rounded px-1 mt-1" style="background-color:#0e4b5e;height:100px;">
                         <div class="row py-0 px-1 mx-0" style="height: -webkit-fill-available;">
                             <form action="/datamsg" method="POST" style="height: -webkit-fill-available;">
                                 <div class="row p-1"style="height: -webkit-fill-available;">
@@ -57,14 +84,14 @@
                                         <textarea id="newmsg" name="message" cols="30" rows="10" class="mt-1 ml-1rounded p-2" style="height:85px;width:650px;" required></textarea>
                                     </div>
                                     <div class="col- p-2 my-1 mx-2">
-                                    <button type="submit" id="subbtn" class="btn btn-sm btn-success m-3 mx-auto rounded" style="height:40px;">Enviar</button>
+                                    <button type="submit" id="txtbtn" class="btn btn-sm btn-success m-3 mx-auto rounded" style="height:40px;">Enviar</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-2 p-0">
+                    <div class="col-2 p-0">
                     <div id="colder" class="container" style="padding:12px;margin: 7px;max-width:-webkit-fill-available;height: 500px;">
                         <div class="msg-header" style="height:-webkit-fill-available;">
                             <div class="msg-header-img bg-dark" style="height: 200px;">
@@ -75,39 +102,10 @@
                         </div>
                         <a href="/logout"><button type="submit" id="deslogeo" class="btn btn-outline-danger mt-5">Log Out</button></a>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        
-        $(document).ready(function () {
-
-            var socket = io("http://localhost:8000");
-
-            $("#subbtn").on("click", function () {
-
-                const mensaje = $('#newmsg').val();
-                const owner = req.session.user.id;
-                const hora = moment().format('hh:mm');
-                if (mensaje == '') { alert('No se puede enviar mensajes vacios'); return; }
-                $('#navul').append(`
-                        <div class="row px-2 justify-content-end">
-                            <a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);">
-                                <sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup>
-                                <p class="p-0 m-0" style="font-size: small;">${mensaje}</p>
-                                <sub class="text-right my-2" style="float: right; position: static;font-size: x-small;">${hora}</sub></a>
-                        </div>
-                `);
-                const data = { message: mensaje,time: hora,who: '<%=user.nickname%>',UserId: '<%=user.id%>',};
-                socket.emit('mensuser', data);
-                $('#newmsg').val('');
-                $.post('/datamsg',data);
-            });    
-        });           
-
-    </script>
     </body>
 
 </html>
