@@ -11,11 +11,12 @@
             moment.locale("es");
             
             $("#txtbtn").on('click', function (ev) {
+                console.log('llegamos acá');
                 const new_mensaje = $('#newmsg').val();    
                 const owner = req.session.user.id;
                 const hora = moment().format('hh:mm');
                 if (new_mensaje == '') { alert('No se puede enviar mensajes vacios'); return; }
-                $('#chat').append(`<div class="row px-2 justify-content-end"> <a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);"> <sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup> <p class="p-0 m-0" style="font-size: small;">${new_mensaje}</p> <sub class="text-right my-2" style="float: right; position: static;font-size: x-small;">${hora}</sub></a> </div> `);
+                $('#navul').append(`<div class="row px-2 justify-content-end"> <a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;background-color: rgb(203, 236, 210);"> <sup class="p-0 m-1" style="font-size: 10px;"><%=user.nickname%></sup> <p class="p-0 m-0" style="font-size: small;">${new_mensaje}</p> <sub class="text-right my-2" style="float: right; position: static;font-size: x-small;">${hora}</sub></a> </div> `);
                 const data = { message: mensaje,time: hora,who: '<%=user.nickname%>',UserId: '<%=user.id%>',};
                 socket.emit('mensuser', data);
                 $('#newmsg').val('');
@@ -68,10 +69,10 @@
                     <div class="col-8">
                         <div class="container px-0" style="height: 475px;background-color: beige; width:revert;">
                             <div class="list-group container" data-spy="scroll" style="max-height:470px;">
-                                <ul class="px-3" id="navul" style="max-height:470px;contain:content;overflow-y: scroll;overflow-x:hidden;">
+                                <div class="px-3" id="navul" style="max-height:470px;contain:content;overflow-y: scroll;overflow-x:hidden;">
                                     <br id="chat">
-                                    
-                                </ul>
+                                 
+                                </div>
                             </div>
                         </div>
                         <div class="row my-1 px-4" style="background-color: beige;font-size:small;"> Zona de notificaciones</div>
@@ -84,7 +85,7 @@
                                         <textarea id="newmsg" name="message" cols="30" rows="10" class="mt-1 ml-1rounded p-2" style="height:85px;width:650px;" required></textarea>
                                     </div>
                                     <div class="col- p-2 my-1 mx-2">
-                                    <button type="submit" id="txtbtn" class="btn btn-sm btn-success m-3 mx-auto rounded" style="height:40px;">Enviar</button>
+                                    <button id="txtbtn" class="btn btn-sm btn-success m-3 mx-auto rounded" style="height:40px;">Enviar</button>
                                     </div>
                                 </div>
                             </form>

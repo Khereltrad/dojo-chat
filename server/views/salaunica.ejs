@@ -14,10 +14,17 @@
 
 
 
+if(<%=chat.UsuarioId%> !=user.id ){"A"} else{ "B"};
 
 
-
-
+<!-- <% for ( let chat of chats) { %>
+                                        <% if(<%=chat.UsuarioId%> !=user.id ){ %>
+                                            $('#chat').append('<div class="row px-2"><a href="#" class="list-group-item list-group-item-action my-1 py-1 px-2 rounded" style="width: fit-content;"><sup class="p-0 m-1"  style="font-size: 10px;"> <%=chat.UsuarioId %>  </sup><p class="p-0 m-0" style="font-size: small;"> <%= chat.message  %>  </p><sub class="text-right my-2" style="float: right;position: static;font-size: x-small;"> Moment </sub></a></div>');
+                                            <%  else{ %>
+                                                <p>"B"</p>
+                                            <% } %> 
+                                        <% } %>  
+                                    <% } %> 
 
 
 

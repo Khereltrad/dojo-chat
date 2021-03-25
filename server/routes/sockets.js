@@ -3,6 +3,6 @@ module.exports =function(server){
 
    io.on("connection", function (socket) {
    
-      socket.on("mensuser", function (data) { console.log('llegamos acá'); socket.broadcast.emit('messagin',data);});
+      socket.on("mensuser", function (data) { socket.broadcast.emit('messagin',data);});
    });
 }
